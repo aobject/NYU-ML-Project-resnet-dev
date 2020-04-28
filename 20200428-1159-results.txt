@@ -1,0 +1,41 @@
+================================== Hyperparameters ==================================Learning Rate: 0.4Kernel Layers: 64Epochs: 10Seed: 33==============================
+Test Loss: 0.9835820934647926
+Test Accuracy: 47.98331015299026 %Train Loss: 0.9909612543641156
+Train Accuracy: 38.68274582560297 %
+
+Test Loss: 0.9679372994842044
+Test Accuracy: 53.12934631432545 %Train Loss: 0.975462497570058
+Train Accuracy: 51.39146567717996 %
+
+Test Loss: 0.9528354943424795
+Test Accuracy: 56.4673157162726 %Train Loss: 0.9597178389613512
+Train Accuracy: 55.65862708719852 %
+
+Test Loss: 0.9384600501630642
+Test Accuracy: 57.71905424200278 %Train Loss: 0.9447075488527145
+Train Accuracy: 59.554730983302406 %
+
+Test Loss: 0.9237253999357886
+Test Accuracy: 58.8317107093185 %Train Loss: 0.9302064071716238
+Train Accuracy: 59.92578849721707 %
+
+Test Loss: 0.9083882613470334
+Test Accuracy: 60.639777468706534 %Train Loss: 0.9152135617729866
+Train Accuracy: 61.781076066790355 %
+
+Test Loss: 0.8937588932814707
+Test Accuracy: 64.25591098748261 %Train Loss: 0.9004639166148226
+Train Accuracy: 63.54359925788498 %
+
+Test Loss: 0.8799155111161818
+Test Accuracy: 67.17663421418636 %Train Loss: 0.8865006613083248
+Train Accuracy: 67.06864564007421 %
+
+Test Loss: 0.866855617392598
+Test Accuracy: 70.37552155771905 %Train Loss: 0.8733218854971075
+Train Accuracy: 69.01669758812616 %
+
+Test Loss: 0.8545357783741322
+Test Accuracy: 71.7663421418637 %Train Loss: 0.8608686054984465
+Train Accuracy: 70.12987012987013 %
+
