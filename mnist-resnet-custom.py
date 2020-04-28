@@ -66,19 +66,18 @@ if __name__ == '__main__':
             loss_test += loss
             acc_test += acc
 
-
         loss_train_seq.append(loss_train / train_examples)
         loss_test_seq.append(loss_test / test_examples)
         acc_train_seq.append(acc_train / train_examples)
         acc_test_seq.append(acc_test / test_examples)
 
+        print('Test Loss: {}\nTest Accuracy: {} %'.format(loss_test_seq[-1], acc_test_seq[-1] * 100))
+        print('Train Loss: {}\nTrain Accuracy: {} %\n\n'.format(loss_train_seq[-1], acc_train_seq[-1] * 100))
+
+        file.write('Test Loss: {}\nTest Accuracy: {} %'.format(loss_test_seq[-1], acc_test_seq[-1] * 100))
+        file.write('Train Loss: {}\nTrain Accuracy: {} %\n\n'.format(loss_train_seq[-1], acc_train_seq[-1] * 100))
+
     plot_results(loss_train_seq, loss_test_seq, acc_train_seq, acc_test_seq)
-
-    print('Test Loss: {}\nTest Accuracy: {} %'.format(loss_test_seq[-1], acc_test_seq[-1] * 100))
-    print('Train Loss: {}\nTrain Accuracy: {} %\n\n'.format(loss_train_seq[-1], acc_train_seq[-1] * 100))
-
-    file.write('Test Loss: {}\nTest Accuracy: {} %'.format(loss_test_seq[-1], acc_test_seq[-1] * 100))
-    file.write('Train Loss: {}\nTrain Accuracy: {} %\n\n'.format(loss_train_seq[-1], acc_train_seq[-1] * 100))
 
     file.close()
     print('Done!')
