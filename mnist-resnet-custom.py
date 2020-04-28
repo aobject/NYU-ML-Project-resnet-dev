@@ -7,7 +7,7 @@ import time
 if __name__ == '__main__':
     kernel_layers = 64
     pool_size = 2
-    epochs = 3000
+    epochs = 10
     out_nodes = 10
     alpha = 0.4
     seed = 33

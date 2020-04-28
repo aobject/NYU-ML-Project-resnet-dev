@@ -4,11 +4,14 @@ class CNN:
 
     def __init__(self, num_kernels, pool_size, out_nodes, seed):
         self.kernels = self.Kernels(num_kernels)  # 8x8x1  to 6x6x10
+        # TODO add pooling initialization
         # self.pool = self.Pool(pool_size)  # 6x6x10 to 3x3x10
-        self.sigmoid = self.Sigmoid(6 * 6 * num_kernels, out_nodes)  # 6x6x10 to 10
+        # TODO change sigmoid to relu
+        self.sigmoid = self.ReLu(6 * 6 * num_kernels, out_nodes)  # 6x6x10 to 10
         np.random.seed(seed)
 
     class Kernels:
+        # TODO possibly add bias forward and backprop to kernel outputs
         # The set of kernels and kernel functions
 
         def __init__(self, num_kernels):
@@ -29,6 +32,7 @@ class CNN:
             return result
 
         def back(self, delta_cnn, alpha):
+            # TODO change size to recieve backprop from pool size
             height, width = self.cur_x.shape
             dk = np.zeros(self.kernels.shape)
             delta_cnn = delta_cnn.reshape(height-2, width-2,self.num_kernels)
@@ -58,7 +62,7 @@ class CNN:
             return result
 
         def back(self, delta_pool):
-
+            # TODO recieve from output size
             height, width, num_k = self.cur_input.shape
             delta_pool = delta_pool.reshape((height//2, width//2, num_k))
             delta_cnn = np.zeros((height, width, num_k))
@@ -76,18 +80,19 @@ class CNN:
             return delta_cnn
 
 
-    class Sigmoid:
+    class ReLu:
         # Use a fully connected layer using sigmoid activation
 
         def __init__(self, in_nodes, out_nodes):
             self.w = np.random.randn(out_nodes, in_nodes) / in_nodes
             self.b = np.zeros((out_nodes, 1))
 
-        def sig(self,z):
-            return 1 / (1+np.exp(-z))
+        def f(self, z):
+            return np.where(z > 0, z, 0)
 
-        def d_sig(self,z):
-            return self.sig(z) * (1-self.sig(z))
+        def d_f(self, z):
+            test = np.where(z>0, 1.0, 0.0)
+            return np.where(z>0, 1.0, 0.0)
 
         def loss(self, y, yhat):
             self.y_vector = np.zeros((len(yhat), 1))
@@ -97,11 +102,12 @@ class CNN:
             return loss, accuracy
 
         def forward(self, x):
+            # TODO setup to receive pool size
             self.z_cnn = x.reshape(-1, 1)
-            self.a_cnn = self.sig(self.z_cnn)
+            self.a_cnn = self.f(self.z_cnn)
 
             self.z_out = np.matmul(self.w, self.a_cnn) + self.b
-            self.a_out = self.sig(self.z_out)
+            self.a_out = self.f(self.z_out)
 
             return self.a_out
 
@@ -111,10 +117,10 @@ class CNN:
             b_grad = np.zeros(self.b.shape)
 
             # get delta for out layer
-            delta_out = -(self.y_vector - self.a_out) * self.d_sig(self.z_out)
+            delta_out = -(self.y_vector - self.a_out) * self.d_f(self.z_out)
 
             # get delta for hidden layer
-            delta_pool = np.dot(self.w.T, delta_out) * self.d_sig(self.z_cnn)
+            delta_pool = np.dot(self.w.T, delta_out) * self.d_f(self.z_cnn)
 
             w_grad += -alpha * np.matmul(delta_out, self.a_cnn.T)
             b_grad += -alpha * delta_out
