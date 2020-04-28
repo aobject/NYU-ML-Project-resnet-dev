@@ -3,7 +3,7 @@ from sklearn.datasets import load_digits # The MNIST data set is in scikit learn
 from sklearn.preprocessing import StandardScaler  # It is important in neural networks to scale the date
 from sklearn.model_selection import train_test_split  # The standard - train/test to prevent overfitting and choose hyperparameters
 from utils.cnn import CNN
-from bokeh.plotting import figure, output_file, show
+from bokeh.plotting import figure, output_file, show, save
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
 from bokeh.io import output_notebook
 # output_notebook()
@@ -76,7 +76,8 @@ def plot_results(loss_train_seq, loss_test_seq, acc_train_seq, acc_test_seq):
         mode='mouse'
     ))
 
-    show(p)
+    output_file("loss.html")
+    save(p)
 
     source = ColumnDataSource(data={
         'epoch'            : range(1, len(acc_train_seq) + 1),
@@ -103,6 +104,7 @@ def plot_results(loss_train_seq, loss_test_seq, acc_train_seq, acc_test_seq):
         mode='mouse'
     ))
 
+    output_file("accuracy.html")
     show(p)
 
 
